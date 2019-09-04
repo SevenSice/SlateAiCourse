@@ -1,0 +1,18 @@
+{
+	"FileVersion": 3,
+	"EngineAssociation": "{79C26B63-4723-E1D0-B755-FA9B0D24D50F}",
+	"Category": "",
+	"Description": "",
+	"Modules": [
+		{
+			"Name": "SlateAiCourse",
+			"Type": "Runtime",
+			"LoadingPhase": "Default",
+			"AdditionalDependencies": [
+				"Engine",
+				"Slate",
+				"SlateCore"
+			]
+		}
+	]
+}
