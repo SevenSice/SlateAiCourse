@@ -28,6 +28,9 @@ public:
 	//音量
 	float MusicVolume;
 	float SoundVolume;
+
+	//存档数据
+	TArray<FString> RecordDataList;
 private:
 	//创建单例
 	static TSharedPtr<SlAiDataHandle> Create();
@@ -39,6 +42,9 @@ private:
 	//根据字符串获取Enum的值
 	template<typename TEnum>
 	TEnum GetEnumValueFromString(const FString& Name, FString Value);
+
+	//初始化存档
+	void InitRecordData();
 private:
 
 	static TSharedPtr<SlAiDataHandle> DataInstance;
