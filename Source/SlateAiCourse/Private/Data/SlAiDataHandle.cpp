@@ -45,13 +45,6 @@ void SlAiDataHandle::InitRecordData()
 	ChangeLocalizationCulture(GetEnumValueFromString<ECultureTeam>(FString("ECultureTeam"), Culture));
 	//初始化声音
 	
-	//输出
-	SlAiHelper::Debug(Culture + FString("--") + FString::SanitizeFloat(MusicVolume) + FString("--") + FString::SanitizeFloat(SoundVolume),20.0f);
-	//循环读取RecordDataList
-	for (TArray<FString>::TIterator It(RecordDataList);It;++It)
-	{
-		SlAiHelper::Debug(*It, 20.0f);
-	}
 }
 
 void SlAiDataHandle::ChangeLocalizationCulture(ECultureTeam Culture)
@@ -67,6 +60,10 @@ void SlAiDataHandle::ChangeLocalizationCulture(ECultureTeam Culture)
 	}
 	//本地语言赋值
 	CurrentCulture = Culture;
+
+	//更新存档数据
+	SlAiSingleton<SlAiJsonHandle>::Get()->UpdateRecordData(GetEnumValueAsString<ECultureTeam>(FString("ECultureTeam"), CurrentCulture), MusicVolume, SoundVolume, &RecordDataList);
+
 }
 
 void SlAiDataHandle::ResetMenuVolume(float MusicVol, float SoundVol)
@@ -80,12 +77,14 @@ void SlAiDataHandle::ResetMenuVolume(float MusicVol, float SoundVol)
 	{
 		SoundVolume = SoundVol;
 	}
+	//更新存档数据
+	SlAiSingleton<SlAiJsonHandle>::Get()->UpdateRecordData(GetEnumValueAsString<ECultureTeam>(FString("ECultureTeam"), CurrentCulture), MusicVolume, SoundVolume, &RecordDataList);
 }
 
 template<typename TEnum>
 FString SlAiDataHandle::GetEnumValueAsString(const FString& Name, TEnum Value)
 {
-	const UEnum* EnumPtr = FindObject<UEnum>(ANY_PACKAGE, Name, true);
+	const UEnum* EnumPtr = FindObject<UEnum>(ANY_PACKAGE, *Name, true);
 	if (!EnumPtr)
 	{
 		return FString("In Valid");
