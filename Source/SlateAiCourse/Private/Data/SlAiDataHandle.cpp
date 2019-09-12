@@ -37,6 +37,7 @@ TSharedPtr<SlAiDataHandle> SlAiDataHandle::Create()
 
 void SlAiDataHandle::InitRecordData()
 {
+	RecordName = FString("");
 	//获取语言
 	FString Culture;
 	//读取存档数据,存到this->变量
@@ -89,7 +90,8 @@ FString SlAiDataHandle::GetEnumValueAsString(const FString& Name, TEnum Value)
 	{
 		return FString("In Valid");
 	}
-	return EnumPtr->GetEnumName((int32)Value);
+	//return EnumPtr->GetEnumName((int32)Value);//it`s ild.
+	return EnumPtr->GetNameStringByIndex((int32)Value);//its new.
 }
 
 template<typename TEnum>

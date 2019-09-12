@@ -45,7 +45,7 @@ void SlAiJsonHandle::RecordDataJsonRead(FString& Culture, float& MusicVolume, fl
 void SlAiJsonHandle::UpdateRecordData(FString Culture, float MusicVolume, float SoundVolume, TArray<FString>* RecordDataList)
 {
 	TSharedPtr<FJsonObject> JsonObject = MakeShareable(new FJsonObject);
-
+	
 	TArray<TSharedPtr<FJsonValue>> BaseDataArray;
 
 	TSharedPtr<FJsonObject> CultureObject = MakeShareable(new FJsonObject);
