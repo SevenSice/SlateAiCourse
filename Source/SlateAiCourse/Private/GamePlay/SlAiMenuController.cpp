@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "SlAiMenuController.h"
@@ -11,7 +11,7 @@ ASlAiMenuController::ASlAiMenuController()
 void ASlAiMenuController::BeginPlay()
 {
 	FInputModeUIOnly InputMode;
-	//Êó±êËø¶¨ÔÚ´°¿ÚÄÚ
+	//é¼ æ ‡é”å®šåœ¨çª—å£å†…
 	//InputMode.SetLockMouseToViewportBehavior(EMouseLockMode::LockAlways);
 	SetInputMode(InputMode);
 }

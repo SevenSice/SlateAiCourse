@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "SlAiDataHandle.h"
@@ -11,7 +11,7 @@ TSharedPtr<SlAiDataHandle> SlAiDataHandle:: DataInstance = NULL;
 
 SlAiDataHandle::SlAiDataHandle()
 {
-	//³õÊ¼»¯´æµµ
+	//åˆå§‹åŒ–å­˜æ¡£
 	InitRecordData();
 }
 
@@ -38,13 +38,13 @@ TSharedPtr<SlAiDataHandle> SlAiDataHandle::Create()
 void SlAiDataHandle::InitRecordData()
 {
 	RecordName = FString("");
-	//»ñÈ¡ÓïÑÔ
+	//è·å–è¯­è¨€
 	FString Culture;
-	//¶ÁÈ¡´æµµÊı¾İ,´æµ½this->±äÁ¿
+	//è¯»å–å­˜æ¡£æ•°æ®,å­˜åˆ°this->å˜é‡
 	SlAiSingleton<SlAiJsonHandle>::Get()->RecordDataJsonRead(Culture, MusicVolume, SoundVolume,RecordDataList);
-	//³õÊ¼»¯ÓïÑÔ
+	//åˆå§‹åŒ–è¯­è¨€
 	ChangeLocalizationCulture(GetEnumValueFromString<ECultureTeam>(FString("ECultureTeam"), Culture));
-	//³õÊ¼»¯ÉùÒô
+	//åˆå§‹åŒ–å£°éŸ³
 	
 }
 
@@ -59,17 +59,17 @@ void SlAiDataHandle::ChangeLocalizationCulture(ECultureTeam Culture)
 		FInternationalization::Get().SetCurrentCulture(TEXT("zh"));
 		break;
 	}
-	//±¾µØÓïÑÔ¸³Öµ
+	//æœ¬åœ°è¯­è¨€èµ‹å€¼
 	CurrentCulture = Culture;
 
-	//¸üĞÂ´æµµÊı¾İ
+	//æ›´æ–°å­˜æ¡£æ•°æ®
 	SlAiSingleton<SlAiJsonHandle>::Get()->UpdateRecordData(GetEnumValueAsString<ECultureTeam>(FString("ECultureTeam"), CurrentCulture), MusicVolume, SoundVolume, &RecordDataList);
 
 }
 
 void SlAiDataHandle::ResetMenuVolume(float MusicVol, float SoundVol)
 {
-	//ÅĞ¶ÏÊÇ·ñÁ½¸öÖµ¶¼ĞèÒªĞŞ¸Ä£¬´«ÈëĞ¡ÓÚ0µÄÖµ²»ĞŞ¸Ä
+	//åˆ¤æ–­æ˜¯å¦ä¸¤ä¸ªå€¼éƒ½éœ€è¦ä¿®æ”¹ï¼Œä¼ å…¥å°äº0çš„å€¼ä¸ä¿®æ”¹
 	if (MusicVol>0)
 	{
 		MusicVolume = MusicVol;
@@ -78,7 +78,7 @@ void SlAiDataHandle::ResetMenuVolume(float MusicVol, float SoundVol)
 	{
 		SoundVolume = SoundVol;
 	}
-	//¸üĞÂ´æµµÊı¾İ
+	//æ›´æ–°å­˜æ¡£æ•°æ®
 	SlAiSingleton<SlAiJsonHandle>::Get()->UpdateRecordData(GetEnumValueAsString<ECultureTeam>(FString("ECultureTeam"), CurrentCulture), MusicVolume, SoundVolume, &RecordDataList);
 }
 

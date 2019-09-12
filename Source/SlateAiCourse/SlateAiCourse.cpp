@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "SlateAiCourse.h"
 #include "Modules/ModuleManager.h"
@@ -8,8 +8,8 @@ IMPLEMENT_PRIMARY_GAME_MODULE(FSlAiCourceModule, SlateAiCourse, "SlateAiCourse" 
 
 void FSlAiCourceModule::StartupModule()
 {
-	//*³õÊ¼»¯ÑùÊ½
-		//**¼ÓÔØµÄÊ±ºòÏÈÈ¡Ïû×¢²á
+	//*åˆå§‹åŒ–æ ·å¼
+		//**åŠ è½½çš„æ—¶å€™å…ˆå–æ¶ˆæ³¨å†Œ
 	FSlateStyleRegistry::UnRegisterSlateStyle(SlAiStyle::GetStyleSetName());
 	SlAiStyle::Initialize();
 }

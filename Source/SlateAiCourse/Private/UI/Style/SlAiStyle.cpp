@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "SlAiStyle.h"
@@ -10,7 +10,7 @@ void SlAiStyle::Initialize()
 	if (!SlAiStyleInstance.IsValid())
 	{
 		SlAiStyleInstance = Create();
-		//×¢²á
+		//æ³¨å†Œ
 		FSlateStyleRegistry::RegisterSlateStyle(*SlAiStyleInstance);
 	}
 }
@@ -21,12 +21,12 @@ FName SlAiStyle::GetStyleSetName()
 
 	return StyleSetName;
 }
-//ÓÎÏ·½áÊøÊ±
+//æ¸¸æˆç»“æŸæ—¶
 void SlAiStyle::ShutDown()
 {
-	//È¡Ïû×¢²á
+	//å–æ¶ˆæ³¨å†Œ
 	FSlateStyleRegistry::UnRegisterSlateStyle(*SlAiStyleInstance);
-	//È·±£ÓĞĞ§
+	//ç¡®ä¿æœ‰æ•ˆ
 	ensure(SlAiStyleInstance.IsUnique());
 	SlAiStyleInstance.Reset();
 }

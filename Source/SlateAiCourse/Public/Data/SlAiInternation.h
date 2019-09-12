@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
@@ -18,31 +18,31 @@ public:
 
 #define LOCTEXT_NAMESPACE "SlAiMenu"
 
-SlAiInternation::Register(LOCTEXT("Menu", "Menu"));//²Ëµ¥
-SlAiInternation::Register(LOCTEXT("StartGame", "StartGame"));//¿ªÊ¼ÓÎÏ·
-SlAiInternation::Register(LOCTEXT("GameOption", "GameOption"));//ÓÎÏ·ÉèÖÃ
-SlAiInternation::Register(LOCTEXT("QuitGame", "QuitGame"));//ÍË³öÓÎÏ·
+SlAiInternation::Register(LOCTEXT("Menu", "Menu"));//èœå•
+SlAiInternation::Register(LOCTEXT("StartGame", "StartGame"));//å¼€å§‹æ¸¸æˆ
+SlAiInternation::Register(LOCTEXT("GameOption", "GameOption"));//æ¸¸æˆè®¾ç½®
+SlAiInternation::Register(LOCTEXT("QuitGame", "QuitGame"));//é€€å‡ºæ¸¸æˆ
 
-SlAiInternation::Register(LOCTEXT("NewGame", "NewGame"));//ĞÂÓÎÏ·
-SlAiInternation::Register(LOCTEXT("LoadRecord", "LoadRecord"));//¼ÓÔØ´æµµ
+SlAiInternation::Register(LOCTEXT("NewGame", "NewGame"));//æ–°æ¸¸æˆ
+SlAiInternation::Register(LOCTEXT("LoadRecord", "LoadRecord"));//åŠ è½½å­˜æ¡£
 
-SlAiInternation::Register(LOCTEXT("ChooseRecord", "ChooseRecord"));//Ñ¡Ôñ´æµµ
+SlAiInternation::Register(LOCTEXT("ChooseRecord", "ChooseRecord"));//é€‰æ‹©å­˜æ¡£
 
-																   //½øÈëÓÎÏ·½çÃæ
-SlAiInternation::Register(LOCTEXT("RecordName", "RecordName"));//´æµµÃû
-SlAiInternation::Register(LOCTEXT("EnterGame", "EnterGame"));//½øÈëÓÎÏ·
-SlAiInternation::Register(LOCTEXT("EnterRecord", "EnterRecord"));//½øÈë´æµµ
-SlAiInternation::Register(LOCTEXT("RecordNameHint", "Input Record Name!");//ÊäÈë´æµµÃû
-SlAiInternation::Register(LOCTEXT("NameRepeatedHint", "Record Name Repeated!");//ÊäÈë´æµµÃû
+																   //è¿›å…¥æ¸¸æˆç•Œé¢
+SlAiInternation::Register(LOCTEXT("RecordName", "RecordName"));//å­˜æ¡£å
+SlAiInternation::Register(LOCTEXT("EnterGame", "EnterGame"));//è¿›å…¥æ¸¸æˆ
+SlAiInternation::Register(LOCTEXT("EnterRecord", "EnterRecord"));//è¿›å…¥å­˜æ¡£
+SlAiInternation::Register(LOCTEXT("RecordNameHint", "Input Record Name!");//è¾“å…¥å­˜æ¡£å
+SlAiInternation::Register(LOCTEXT("NameRepeatedHint", "Record Name Repeated!");//è¾“å…¥å­˜æ¡£å
 
-																			   //ÓÎÏ·ÉèÖÃ½çÃæ
-SlAiInternation::Register(LOCTEXT("Chinese", "Chinese"));//ÖĞÎÄ
-SlAiInternation::Register(LOCTEXT("English", "English"));//Ó¢ÎÄ
-SlAiInternation::Register(LOCTEXT("Music", "Music"));//ÒôÀÖ
-SlAiInternation::Register(LOCTEXT("Sound", "Sound"));//ÒôĞ§
+																			   //æ¸¸æˆè®¾ç½®ç•Œé¢
+SlAiInternation::Register(LOCTEXT("Chinese", "Chinese"));//ä¸­æ–‡
+SlAiInternation::Register(LOCTEXT("English", "English"));//è‹±æ–‡
+SlAiInternation::Register(LOCTEXT("Music", "Music"));//éŸ³ä¹
+SlAiInternation::Register(LOCTEXT("Sound", "Sound"));//éŸ³æ•ˆ
 
-													 //¹«ÓÃ
-SlAiInternation::Register(LOCTEXT("GoBack", "GoBack"));//·µ»Ø
+													 //å…¬ç”¨
+SlAiInternation::Register(LOCTEXT("GoBack", "GoBack"));//è¿”å›
 
 #undef LOCTEXT_NAMESPACE
 
@@ -50,22 +50,22 @@ SlAiInternation::Register(LOCTEXT("GoBack", "GoBack"));//·µ»Ø
 #define LOCTEXT_NAMESPACE "SlAiGame"
 
 
-SlAiInternation::Register(LOCTEXT("E", "E"));//¶«
-SlAiInternation::Register(LOCTEXT("S", "S"));//ÄÏ
-SlAiInternation::Register(LOCTEXT("W", "W"));//Î÷
-SlAiInternation::Register(LOCTEXT("N", "N"));//±±
+SlAiInternation::Register(LOCTEXT("E", "E"));//ä¸œ
+SlAiInternation::Register(LOCTEXT("S", "S"));//å—
+SlAiInternation::Register(LOCTEXT("W", "W"));//è¥¿
+SlAiInternation::Register(LOCTEXT("N", "N"));//åŒ—
 
-SlAiInternation::Register(LOCTEXT("Player", "Player"));//Íæ¼Ò
-SlAiInternation::Register(LOCTEXT("Enemy", "Enemy"));//µĞÈË
+SlAiInternation::Register(LOCTEXT("Player", "Player"));//ç©å®¶
+SlAiInternation::Register(LOCTEXT("Enemy", "Enemy"));//æ•Œäºº
 
-SlAiInternation::Register(LOCTEXT("EnemyDialogue", ": Fight with me !"));//µĞÈËµÄ¶Ô»°
-SlAiInternation::Register(LOCTEXT("Send", "Send"));//·¢ËÍ
+SlAiInternation::Register(LOCTEXT("EnemyDialogue", ": Fight with me !"));//æ•Œäººçš„å¯¹è¯
+SlAiInternation::Register(LOCTEXT("Send", "Send"));//å‘é€
 
-SlAiInternation::Register(LOCTEXT("GameOption", "GameOption"));//ÓÎÏ·ÉèÖÃ
-SlAiInternation::Register(LOCTEXT("SaveGame", "SaveGame"));//±£´æÓÎÏ·
-SlAiInternation::Register(LOCTEXT("SaveCompleted", "SaveCompleted"));//±£´æÍê±Ï
-SlAiInternation::Register(LOCTEXT("QuitGame", "QuitGame"));//ÍË³öÓÎÏ·
-SlAiInternation::Register(LOCTEXT("GoBack", "GoBack"));//·µ»Ø
+SlAiInternation::Register(LOCTEXT("GameOption", "GameOption"));//æ¸¸æˆè®¾ç½®
+SlAiInternation::Register(LOCTEXT("SaveGame", "SaveGame"));//ä¿å­˜æ¸¸æˆ
+SlAiInternation::Register(LOCTEXT("SaveCompleted", "SaveCompleted"));//ä¿å­˜å®Œæ¯•
+SlAiInternation::Register(LOCTEXT("QuitGame", "QuitGame"));//é€€å‡ºæ¸¸æˆ
+SlAiInternation::Register(LOCTEXT("GoBack", "GoBack"));//è¿”å›
 
 
 #undef LOCTEXT_NAMESPACE

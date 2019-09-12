@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "SSlAiMenuItemWidget.h"
@@ -14,7 +14,7 @@ void SSlAiMenuItemWidget::Construct(const FArguments& InArgs)
 	MenuStyle = &SlAiStyle::Get().GetWidgetStyle<FSlAiMenuStyle>("BP_SlAiMenuStyle");
 
 	OnClicked = InArgs._OnClick;
-	//·µ»ØµÄÊÇTAttribute<EMenuItem::Type>ÀàĞÍ£¬Òª¼ÓGet()
+	//è¿”å›çš„æ˜¯TAttribute<EMenuItem::Type>ç±»å‹ï¼Œè¦åŠ Get()
 	ItemType = InArgs._ItemType.Get();
 	
 	ChildSlot
@@ -45,7 +45,7 @@ void SSlAiMenuItemWidget::Construct(const FArguments& InArgs)
 
 	];
 
-	//³õÊ¼»¯
+	//åˆå§‹åŒ–
 	IsMouseButtonDown = false;
 }
 END_SLATE_FUNCTION_BUILD_OPTIMIZATION
@@ -58,11 +58,11 @@ FReply SSlAiMenuItemWidget::OnMouseButtonDown(const FGeometry& MyGeometry, const
 
 FReply SSlAiMenuItemWidget::OnMouseButtonUp(const FGeometry& MyGeometry, const FPointerEvent& MouseEvent)
 {
-	//Èç¹û°´Å¥°´ÏÂÁË£¬²¢ÇÒOnclickedÓĞÎ¯ÍĞ°ó¶¨·½·¨£¬¾ÍÖ´ĞĞ
+	//å¦‚æœæŒ‰é’®æŒ‰ä¸‹äº†ï¼Œå¹¶ä¸”Onclickedæœ‰å§”æ‰˜ç»‘å®šæ–¹æ³•ï¼Œå°±æ‰§è¡Œ
 	if (IsMouseButtonDown)
 	{
 		IsMouseButtonDown = false;
-		//Execute²»ÅĞ¶ÏÊÇ·ñ°ó¶¨Ö±½ÓÔËĞĞ£¬ExecuteIfBound»áÅĞ¶ÏÊÇ·ñÓĞ°ó¶¨ÊÂ¼ş£¨·½·¨£©£¬ÓĞ¾ÍÖ´ĞĞ
+		//Executeä¸åˆ¤æ–­æ˜¯å¦ç»‘å®šç›´æ¥è¿è¡Œï¼ŒExecuteIfBoundä¼šåˆ¤æ–­æ˜¯å¦æœ‰ç»‘å®šäº‹ä»¶ï¼ˆæ–¹æ³•ï¼‰ï¼Œæœ‰å°±æ‰§è¡Œ
 		OnClicked.ExecuteIfBound(ItemType);
 	}
 	return FReply::Handled();

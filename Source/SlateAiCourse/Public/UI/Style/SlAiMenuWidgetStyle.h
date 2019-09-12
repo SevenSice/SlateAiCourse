@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
@@ -29,128 +29,128 @@ struct SLATEAICOURSE_API FSlAiMenuStyle : public FSlateWidgetStyle
 	virtual const FName GetTypeName() const override { return TypeName; };
 	static const FSlAiMenuStyle& GetDefault();
 	/*
-* Ö¸¶¨MenuHUDµÄ±³¾°Í¼Æ¬
+* æŒ‡å®šMenuHUDçš„èƒŒæ™¯å›¾ç‰‡
 */
 	UPROPERTY(EditAnywhere, Category = MenuHUD)
 		FSlateBrush MenuHUDBackgroundBrush;
 	/*
-* Ö¸¶¨MenuµÄ±³¾°Í¼Æ¬
+* æŒ‡å®šMenuçš„èƒŒæ™¯å›¾ç‰‡
 */
 	UPROPERTY(EditAnywhere, Category = Menu)
 		FSlateBrush MenuBackgroundBrush;
 
 	/*
-	* Menu×óÍ¼±êµÄBrush
+	* Menuå·¦å›¾æ ‡çš„Brush
 	*/
 	UPROPERTY(EditAnywhere, Category = Menu)
 		FSlateBrush LeftIconBrush;
 
 
 	/*
-	* MenuÓÒÍ¼±êµÄBrush
+	* Menuå³å›¾æ ‡çš„Brush
 	*/
 	UPROPERTY(EditAnywhere, Category = Menu)
 		FSlateBrush RightIconBrush;
 
 	/*
-	* Menu±êÌâBorderµÄBrush
+	* Menuæ ‡é¢˜Borderçš„Brush
 	*/
 	UPROPERTY(EditAnywhere, Category = Menu)
 		FSlateBrush TitleBorderBrush;
 
 
 	/*
-	* MenuItemµÄBrush
+	* MenuItemçš„Brush
 	*/
 	UPROPERTY(EditAnywhere, Category = MenuItem)
 		FSlateBrush MenuItemBrush;
 
 
 	/*
-	* 60ºÅ×ÖÌå
+	* 60å·å­—ä½“
 	*/
 	UPROPERTY(EditAnywhere, Category = Common)
 		FSlateFontInfo Font_60;
 
 	/*
-	* 40ºÅ×ÖÌå
+	* 40å·å­—ä½“
 	*/
 	UPROPERTY(EditAnywhere, Category = Common)
 		FSlateFontInfo Font_40;
 
 	/*
-	* 30ºÅ×ÖÌå
+	* 30å·å­—ä½“
 	*/
 	UPROPERTY(EditAnywhere, Category = Common)
 		FSlateFontInfo Font_30;
 
 	/*
-	* ºÚÉ«ÑÕÉ«
+	* é»‘è‰²é¢œè‰²
 	*/
 	UPROPERTY(EditAnywhere, Category = Common)
 		FLinearColor FontColor_White;
 
 	/*
-	* °×É«ÑÕÉ«
+	* ç™½è‰²é¢œè‰²
 	*/
 	UPROPERTY(EditAnywhere, Category = Common)
 		FLinearColor FontColor_Black;
 
 
 	/*
-	* GameSetµÄ±³¾°
+	* GameSetçš„èƒŒæ™¯
 	*/
 	UPROPERTY(EditAnywhere, Category = GameOption)
 		FSlateBrush GameOptionBGBrush;
 
 
 	/*
-	* CheckedBoxµÄBrush±»Ñ¡ÖĞ
+	* CheckedBoxçš„Brushè¢«é€‰ä¸­
 	*/
 	UPROPERTY(EditAnywhere, Category = GameOption)
 		FSlateBrush CheckedBoxBrush;
 
 
 	/*
-	* CheckedBoxµÄBrush²»±»Ñ¡ÖĞ
+	* CheckedBoxçš„Brushä¸è¢«é€‰ä¸­
 	*/
 	UPROPERTY(EditAnywhere, Category = GameOption)
 		FSlateBrush UnCheckedBoxBrush;
 
 
 	/*
-	* SliderµÄ±³¾°Brush
+	* Sliderçš„èƒŒæ™¯Brush
 	*/
 	UPROPERTY(EditAnywhere, Category = GameOption)
 		FSlateBrush SliderBarBrush;
 
 	/*
-	* Ö¸¶¨SliderµÄÑùÊ½
+	* æŒ‡å®šSliderçš„æ ·å¼
 	*/
 	UPROPERTY(EditAnywhere, Category = GameOption)
 		FSliderStyle SliderStyle;
 
 
 	/*
-	* ¿ªÊ¼ÓÎÏ·ÉùÒô
+	* å¼€å§‹æ¸¸æˆå£°éŸ³
 	*/
 	UPROPERTY(EditAnywhere, Category = Sound)
 		FSlateSound StartGameSound;
 
 	/*
-	* ½áÊøÓÎÏ·ÉùÒô
+	* ç»“æŸæ¸¸æˆå£°éŸ³
 	*/
 	UPROPERTY(EditAnywhere, Category = Sound)
 		FSlateSound ExitGameSound;
 
 	/*
-	* ×ª»»°´Å¥ÉùÒô
+	* è½¬æ¢æŒ‰é’®å£°éŸ³
 	*/
 	UPROPERTY(EditAnywhere, Category = Sound)
 		FSlateSound MenuItemChangeSound;
 
 	/*
-	* Menu±³¾°ÉùÒô
+	* MenuèƒŒæ™¯å£°éŸ³
 	*/
 	UPROPERTY(EditAnywhere, Category = Sound)
 		FSlateSound MenuBackgroundMusic;

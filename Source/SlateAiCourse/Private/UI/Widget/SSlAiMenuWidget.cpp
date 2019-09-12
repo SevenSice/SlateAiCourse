@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "SSlAiMenuWidget.h"
@@ -18,18 +18,18 @@
 
 struct MenuGroup
 {
-	//²Ëµ¥±êÌâ
+	//èœå•æ ‡é¢˜
 	FText MenuName;
-	//²Ëµ¥¸ß¶È
+	//èœå•é«˜åº¦
 	float MenuHeight;
 	TArray<TSharedPtr<SCompoundWidget>> ChildWidget;
-	//¹¹Ôìº¯Êı
+	//æ„é€ å‡½æ•°
 	MenuGroup(const FText Name, const float height, TArray<TSharedPtr<SCompoundWidget>>* Children)
 	{
 		MenuName = Name;
 		MenuHeight = height;
 
-		//ChildWidget = *Children;    //Ò²¿ÉÒÔ¡£
+		//ChildWidget = *Children;    //ä¹Ÿå¯ä»¥ã€‚
 		for (TArray<TSharedPtr<SCompoundWidget>>::TIterator It(*Children);It;It++)
 		{
 			ChildWidget.Add(*It);
@@ -73,7 +73,7 @@ void SSlAiMenuWidget::Construct(const FArguments& InArgs)
 					SNew(SImage)
 					.Image(&MenuStyle->RightIconBrush)
 				]
-			//±êÌâ
+			//æ ‡é¢˜
 			+ SOverlay::Slot()
 				.HAlign(HAlign_Center)
 				.VAlign(VAlign_Top)
@@ -127,7 +127,7 @@ void SSlAiMenuWidget::InitializedMenuList()
 	RootSizeBox->SetWidthOverride(600.0f);
 	RootSizeBox->SetWidthOverride(510.0f);
 
-	//ÊµÀı»¯Ö÷½çÃæ
+	//å®ä¾‹åŒ–ä¸»ç•Œé¢
 	TArray<TSharedPtr<SCompoundWidget>> MainMenuList;
 	MainMenuList.Add(SNew(SSlAiMenuItemWidget).ItemText(NSLOCTEXT("SlAiMenu", "StartGame", "StartGame")).ItemType(EMenuItem::StartGame).OnClick(this, &SSlAiMenuWidget::MenuItemOnClicked));
 	MainMenuList.Add(SNew(SSlAiMenuItemWidget).ItemText(NSLOCTEXT("SlAiMenu", "GameOption", "GameOption")).ItemType(EMenuItem::GameOption).OnClick(this, &SSlAiMenuWidget::MenuItemOnClicked));
@@ -135,7 +135,7 @@ void SSlAiMenuWidget::InitializedMenuList()
 
 	MenuMap.Add(EMenuType::MainMenu, MakeShareable(new MenuGroup(NSLOCTEXT("SlAiMenu", "Menu", "Menu"), 510.f, &MainMenuList)));
 
-	//¿ªÊ¼ÓÎÏ·½çÃæ
+	//å¼€å§‹æ¸¸æˆç•Œé¢
 	TArray<TSharedPtr<SCompoundWidget>> StartGameList;
 	StartGameList.Add(SNew(SSlAiMenuItemWidget).ItemText(NSLOCTEXT("SlAiMenu", "NewGame", "NewGame")).ItemType(EMenuItem::NewGame).OnClick(this, &SSlAiMenuWidget::MenuItemOnClicked));
 	StartGameList.Add(SNew(SSlAiMenuItemWidget).ItemText(NSLOCTEXT("SlAiMenu", "LoadRecord", "LoadRecord")).ItemType(EMenuItem::LoadRecord).OnClick(this, &SSlAiMenuWidget::MenuItemOnClicked));
@@ -143,19 +143,19 @@ void SSlAiMenuWidget::InitializedMenuList()
 
 	MenuMap.Add(EMenuType::StartGame, MakeShareable(new MenuGroup(NSLOCTEXT("SlAiMenu", "StartGame", "StartGame"), 510.f, &StartGameList)));
 	
-	//ÓÎÏ·ÉèÖÃ½çÃæ
+	//æ¸¸æˆè®¾ç½®ç•Œé¢
 	TArray<TSharedPtr<SCompoundWidget>> GameOptionList;
-	//ÊµÀı»¯ÓÎÏ·ÉèÖÃµÄWidget
+	//å®ä¾‹åŒ–æ¸¸æˆè®¾ç½®çš„Widget
 	SAssignNew(GameOptionWidget, SSlAiGameOptionWidget)
 		.ChangeCulture(this, &SSlAiMenuWidget::ChangeCulture)
 		.ChangeVolume(this, &SSlAiMenuWidget::ChangeVolume);
-	//Ìí¼Ó¿Ø¼şµ½Êı×é
+	//æ·»åŠ æ§ä»¶åˆ°æ•°ç»„
 	GameOptionList.Add(GameOptionWidget);
 	GameOptionList.Add(SNew(SSlAiMenuItemWidget).ItemText(NSLOCTEXT("SlAiMenu", "GoBack", "GoBack")).ItemType(EMenuItem::GameOptionGoBack).OnClick(this, &SSlAiMenuWidget::MenuItemOnClicked));
 
 	MenuMap.Add(EMenuType::GameOption, MakeShareable(new MenuGroup(NSLOCTEXT("SlAiMenu", "GameOption", "GameOption"), 610.f, &GameOptionList)));
 
-	//¿ªÊ¼ĞÂÓÎÏ·½çÃæ
+	//å¼€å§‹æ–°æ¸¸æˆç•Œé¢
 	TArray<TSharedPtr<SCompoundWidget>> NewGameList;
 	SAssignNew(NewGameWidget, SSlAiNewGameWidget);
 	NewGameList.Add(NewGameWidget);
@@ -164,7 +164,7 @@ void SSlAiMenuWidget::InitializedMenuList()
 
 	MenuMap.Add(EMenuType::NewGame, MakeShareable(new MenuGroup(NSLOCTEXT("SlAiMenu", "NewGame", "NewGame"), 510.f, &NewGameList)));
 
-	//Ñ¡Ôñ´æµµ½çÃæ
+	//é€‰æ‹©å­˜æ¡£ç•Œé¢
 	TArray<TSharedPtr<SCompoundWidget>> ChooseRecordList;
 	SAssignNew(ChooseRecordWidget, SSlAiChooseRecordWidget);
 	ChooseRecordList.Add(ChooseRecordWidget);
@@ -178,22 +178,22 @@ void SSlAiMenuWidget::InitializedMenuList()
 
 void SSlAiMenuWidget::ChooseWidget(EMenuType::Type WidgetType)
 {
-	//ÒÆ³öËùÓĞ×é¼ş(ÇĞ»»ĞÂ¿Ø¼şÇ°Çå¿ÕÔ­À´ËùÓĞµÄ×Ó¿Ø¼ş)
+	//ç§»å‡ºæ‰€æœ‰ç»„ä»¶(åˆ‡æ¢æ–°æ§ä»¶å‰æ¸…ç©ºåŸæ¥æ‰€æœ‰çš„å­æ§ä»¶)
 	ContentBox->ClearChildren();
-	//Èç¹ûMenutypeÊÇNone
+	//å¦‚æœMenutypeæ˜¯None
 	if (WidgetType == EMenuType::None)
 		return;
 	for (TArray<TSharedPtr<SCompoundWidget>>::TIterator It((*MenuMap.Find(WidgetType))->ChildWidget); It; ++It)
 	{
 		ContentBox->AddSlot().AutoHeight()[(*It)->AsShared()];
 	}
-	//¸ü¸Ä±êÌâ
+	//æ›´æ”¹æ ‡é¢˜
 	TitleText->SetText((*MenuMap.Find(WidgetType))->MenuName);
-	//ĞŞ¸Äsize
+	//ä¿®æ”¹size
 	ResetWidgetSize(600.0f, (*MenuMap.Find(WidgetType))->MenuHeight);
 }
 
-//Èç¹û²»ĞŞ¸Ä¸ß¶È,NewHeight×ªÈë-1
+//å¦‚æœä¸ä¿®æ”¹é«˜åº¦,NewHeightè½¬å…¥-1
 void SSlAiMenuWidget::ResetWidgetSize(float NewWidget, float NewHeight)
 {
 	RootSizeBox->SetWidthOverride(NewWidget);

@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
@@ -19,13 +19,13 @@ public:
 	/** Constructs this widget with InArgs */
 	void Construct(const FArguments& InArgs);
 
-	//¸üĞÂ´æµµÃû
+	//æ›´æ–°å­˜æ¡£å
 	void UpdataRecordName();
 private:
-	//»ñÈ¡MenuStyle
+	//è·å–MenuStyle
 	const struct FSlAiMenuStyle* MenuStyle;
-	//ÏÂÀ­²Ëµ¥
+	//ä¸‹æ‹‰èœå•
 	TSharedPtr<STextComboBox> RecordComboBox;
-	//×Ö·ûÖ¸ÕëÊı×é
+	//å­—ç¬¦æŒ‡é’ˆæ•°ç»„
 	TArray<TSharedPtr<FString>> OptionsSource;
 };

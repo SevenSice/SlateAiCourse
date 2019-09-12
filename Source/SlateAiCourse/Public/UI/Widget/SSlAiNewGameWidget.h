@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
@@ -19,12 +19,12 @@ public:
 	/** Constructs this widget with InArgs */
 	void Construct(const FArguments& InArgs);
 
-	//ÊÇ·ñ¿ÉÒÔ½øÈëÓÎÏ·
+	//æ˜¯å¦å¯ä»¥è¿›å…¥æ¸¸æˆ
 	bool AllowEnterGame();
 private:
-	//»ñÈ¡MenuStyle
+	//è·å–MenuStyle
 	const struct FSlAiMenuStyle* MenuStyle;
 
-	//ÊäÈë¿òÖ¸Õë
+	//è¾“å…¥æ¡†æŒ‡é’ˆ
 	TSharedPtr<SEditableTextBox> EditTextBox;
 };

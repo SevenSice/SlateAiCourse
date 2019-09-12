@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
@@ -30,37 +30,37 @@ public:
 	/** Constructs this widget with InArgs */
 	void Construct(const FArguments& InArgs);
 private: 
-	//°ó¶¨µ½¸÷¸öMenuItemµÄ·½·¨
+	//ç»‘å®šåˆ°å„ä¸ªMenuItemçš„æ–¹æ³•
 	void MenuItemOnClicked(EMenuItem::Type ItemType);
-	//ĞŞ¸ÄÓïÑÔ
+	//ä¿®æ”¹è¯­è¨€
 	void ChangeCulture(ECultureTeam Culture);
-	//ĞŞ¸ÄÒôÁ¿
+	//ä¿®æ”¹éŸ³é‡
 	void ChangeVolume(const float MusicVolume, const float SoundVolume);
 
-	//³õÊ¼»¯ËùÓĞµÄ¿Ø¼ş
+	//åˆå§‹åŒ–æ‰€æœ‰çš„æ§ä»¶
 	void InitializedMenuList();
-	//Ñ¡ÔñÏÔÊ¾µÄ½çÃæ
+	//é€‰æ‹©æ˜¾ç¤ºçš„ç•Œé¢
 	void ChooseWidget(EMenuType::Type WidgetType);
-	//ĞŞ¸Ä²Ëµ¥µÄ´óĞ¡
+	//ä¿®æ”¹èœå•çš„å¤§å°
 	void ResetWidgetSize(float NewWidget, float NewHeight);
 private:
-	//»ñÈ¡MenuStyle
+	//è·å–MenuStyle
 	const struct FSlAiMenuStyle* MenuStyle;
 
-	//±£´æ¸ù½ÚµãµÄ
+	//ä¿å­˜æ ¹èŠ‚ç‚¹çš„
 	TSharedPtr<SBox> RootSizeBox;
-	//±£´æ±êÌâ
+	//ä¿å­˜æ ‡é¢˜
 	TSharedPtr<STextBlock> TitleText;
-	//ÓÃÀ´±£´æ´¹Ö±ÁĞ±í
+	//ç”¨æ¥ä¿å­˜å‚ç›´åˆ—è¡¨
 	TSharedPtr<SVerticalBox> ContentBox;
 
-	//±£´æ²Ëµ¥×é
+	//ä¿å­˜èœå•ç»„
 	TMap<EMenuType::Type, TSharedPtr<MenuGroup>> MenuMap;
-	//ÓÎÏ·ÉèÖÃWidgetµÄÖ¸Òı
+	//æ¸¸æˆè®¾ç½®Widgetçš„æŒ‡å¼•
 	TSharedPtr<SSlAiGameOptionWidget> GameOptionWidget;
-	//ĞÂÓÎÏ·¿Ø¼şÖ¸Õë
+	//æ–°æ¸¸æˆæ§ä»¶æŒ‡é’ˆ
 	TSharedPtr<SSlAiNewGameWidget> NewGameWidget;
-	//Ñ¡Ôñ´æµµ¿Ø¼şÖ¸Õë
+	//é€‰æ‹©å­˜æ¡£æ§ä»¶æŒ‡é’ˆ
 	TSharedPtr<SSlAiChooseRecordWidget> ChooseRecordWidget;
 
 };

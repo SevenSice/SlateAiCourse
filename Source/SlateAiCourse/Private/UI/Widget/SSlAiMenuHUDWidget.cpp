@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "SSlAiMenuHUDWidget.h"
@@ -14,10 +14,10 @@
 BEGIN_SLATE_FUNCTION_BUILD_OPTIMIZATION
 void SSlAiMenuHUDWidget::Construct(const FArguments& InArgs)
 {
-	//»ñÈ¡±à¼­Æ÷ÀïÃæµÄMenuStyle£¨ÎÄ¼şÃûÒªÒ»ÖÂ£©.
+	//è·å–ç¼–è¾‘å™¨é‡Œé¢çš„MenuStyleï¼ˆæ–‡ä»¶åè¦ä¸€è‡´ï¼‰.
 	MenuStyle = &SlAiStyle::Get().GetWidgetStyle<FSlAiMenuStyle>("BP_SlAiMenuStyle");
 
-	//°ó¶¨DIPËõ·Å¹æÔò ·½·¨
+	//ç»‘å®šDIPç¼©æ”¾è§„åˆ™ æ–¹æ³•
 	UIScaler.Bind(this, &SSlAiMenuHUDWidget::GetUIScaler);
 	ChildSlot
 		[

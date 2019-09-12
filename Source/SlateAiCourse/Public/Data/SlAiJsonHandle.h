@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
@@ -13,24 +13,24 @@ class SLATEAICOURSE_API SlAiJsonHandle
 public:
 	SlAiJsonHandle();
 
-	//½âÎö´æµµ·½·¨(²ÎÊı¶ÔÓ¦µÄÊÇ"Res/ConfigData/RecordData.json"ÎÄ¼şÀïÃæµÄJson¸ñÊ½)
+	//è§£æå­˜æ¡£æ–¹æ³•(å‚æ•°å¯¹åº”çš„æ˜¯"Res/ConfigData/RecordData.json"æ–‡ä»¶é‡Œé¢çš„Jsonæ ¼å¼)
 	void RecordDataJsonRead(FString& Culture, float& MusicVolume, float& SoundVolume, TArray<FString>& RecordDataList);
-	//ĞŞ¸Ä£¨¸üĞÂ£©´æµµ
+	//ä¿®æ”¹ï¼ˆæ›´æ–°ï¼‰å­˜æ¡£
 	void UpdateRecordData(FString Culture, float MusicVolume, float SoundVolume, TArray<FString>* RecordDataList);
 private:
-	//¶ÁÈ¡JsonÎÄ¼şµ½×Ö·û´®
+	//è¯»å–Jsonæ–‡ä»¶åˆ°å­—ç¬¦ä¸²
 	bool LoadStringFromFile(const FString& FileName, const FString& RelativePath, FString& ResultString);
 
-	//FJsonObject×ª»»ÎªJson¸ñÊ½µÄ×Ö·û´®
+	//FJsonObjectè½¬æ¢ä¸ºJsonæ ¼å¼çš„å­—ç¬¦ä¸²
 	bool GetFStringInJsonData(const TSharedPtr<FJsonObject>& JsonObj, FString& JsonStr);
 
-	//±£´æ×Ö·û´®µ½ÎÄ¼ş
+	//ä¿å­˜å­—ç¬¦ä¸²åˆ°æ–‡ä»¶
 	bool WriteFileWithJsonData(const FString& JsonString, const FString& RelativePath, const FString& FileName);
 private:
 
-	//´æµµÎÄ¼şÃû
+	//å­˜æ¡£æ–‡ä»¶å
 	FString RecordDataFileName;
 
-	//Ïà¶ÔÂ·¾¶
+	//ç›¸å¯¹è·¯å¾„
 	FString RelativePath;
 };

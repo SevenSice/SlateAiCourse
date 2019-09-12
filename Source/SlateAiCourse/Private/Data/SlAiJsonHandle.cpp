@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "SlAiJsonHandle.h"
@@ -16,18 +16,18 @@ void SlAiJsonHandle::RecordDataJsonRead(FString& Culture, float& MusicVolume, fl
 {
 	FString JsonValue;
 	LoadStringFromFile(RecordDataFileName,RelativePath,JsonValue);
-	//´´½¨Êı×éJsonParsed£¬±£´æ½âÎö³öÀ´µÄÊı¾İ
+	//åˆ›å»ºæ•°ç»„JsonParsedï¼Œä¿å­˜è§£æå‡ºæ¥çš„æ•°æ®
 	TArray<TSharedPtr<FJsonValue>> JsonParsed;
 	TSharedRef<TJsonReader<TCHAR>> JsonReader = TJsonReaderFactory<TCHAR>::Create(JsonValue);
-	//½âÎö
+	//è§£æ
 	if (FJsonSerializer::Deserialize(JsonReader, JsonParsed))
 	{
-		//½âÎö³É¹¦
-		//»ñÈ¡Êı¾İ
+		//è§£ææˆåŠŸ
+		//è·å–æ•°æ®
 		Culture = JsonParsed[0]->AsObject()->GetStringField(FString("Culture"));
 		MusicVolume = JsonParsed[1]->AsObject()->GetNumberField(FString("MusicVolume"));
 		SoundVolume = JsonParsed[2]->AsObject()->GetNumberField(FString("SoundVolume"));
-		//»ñÈ¡´æµµÊı¾İ£¨´æµµÊı¾İÎª "x:[1,2,3]",ĞèÒª±éÀúÊı×é²ÅÄÜ»ñÈ¡¾ßÌåÊıÖµ£©
+		//è·å–å­˜æ¡£æ•°æ®ï¼ˆå­˜æ¡£æ•°æ®ä¸º "x:[1,2,3]",éœ€è¦éå†æ•°ç»„æ‰èƒ½è·å–å…·ä½“æ•°å€¼ï¼‰
 		TArray<TSharedPtr<FJsonValue>> RecordDataArray = JsonParsed[3]->AsObject()->GetArrayField(FString("RecordData")); 
 		for (int i=0;i<RecordDataArray.Num();++i)
 		{
@@ -37,7 +37,7 @@ void SlAiJsonHandle::RecordDataJsonRead(FString& Culture, float& MusicVolume, fl
 	}
 	else
 	{
-		//½âÎöÊ§°Ü
+		//è§£æå¤±è´¥
 		SlAiHelper::Debug(FString("Deserialize Failed"));
 	}
 }
@@ -69,29 +69,29 @@ void SlAiJsonHandle::UpdateRecordData(FString Culture, float MusicVolume, float 
 		TSharedPtr<FJsonValueObject>RecordDataValue = MakeShareable(new FJsonValueObject(RecordItem));
 		RecordDataArray.Add(RecordDataValue);
 	}
-	//ÉèÖÃÊı×éÃû
+	//è®¾ç½®æ•°ç»„å
 	TSharedPtr<FJsonObject>RecordDataObject = MakeShareable(new FJsonObject);
 	RecordDataObject->SetArrayField("RecordData", RecordDataArray);
 	TSharedPtr<FJsonValueObject>RecordDataValue = MakeShareable(new FJsonValueObject(RecordDataObject));
 
-	//¼ÓÈë¸ù£¨Êı×é£©
+	//åŠ å…¥æ ¹ï¼ˆæ•°ç»„ï¼‰
 	BaseDataArray.Add(CultureValue);
 	BaseDataArray.Add(MusicVolumeValue);
 	BaseDataArray.Add(SoundVolumeValue);
 	BaseDataArray.Add(RecordDataValue);
 
-	//½«¸ùÊı×é´æ½øÒ»¸ö¶ÔÏó£¨¼ÙÉèµÄÒ»¸ö¶ÔÏó£©
+	//å°†æ ¹æ•°ç»„å­˜è¿›ä¸€ä¸ªå¯¹è±¡ï¼ˆå‡è®¾çš„ä¸€ä¸ªå¯¹è±¡ï¼‰
 	JsonObject->SetArrayField("T", BaseDataArray);
 
-	//½«¶ÔÏó×ª³É×Ö·û´®
+	//å°†å¯¹è±¡è½¬æˆå­—ç¬¦ä¸²
 	FString JsonStr;
 	GetFStringInJsonData(JsonObject, JsonStr);
 
 	SlAiHelper::Debug(FString("Origin Str : " + JsonStr), 60.f);
 
-	//È¥µô¶àÓà×Ö·û
-	JsonStr.RemoveAt(0, 8);//ÊıÖµĞèÒª¼ÆËã£¨´ÓµÚÒ»¸ö×Ö·û¿ªÊ¼£©
-	JsonStr.RemoveFromEnd(FString("}"));//remove×îºóÒ»¸ö"}"×Ö·û
+	//å»æ‰å¤šä½™å­—ç¬¦
+	JsonStr.RemoveAt(0, 8);//æ•°å€¼éœ€è¦è®¡ç®—ï¼ˆä»ç¬¬ä¸€ä¸ªå­—ç¬¦å¼€å§‹ï¼‰
+	JsonStr.RemoveFromEnd(FString("}"));//removeæœ€åä¸€ä¸ª"}"å­—ç¬¦
 
 	SlAiHelper::Debug(FString("Final Str : " + JsonStr), 60.f);
 
@@ -102,9 +102,9 @@ bool SlAiJsonHandle::LoadStringFromFile(const FString& FileName, const FString& 
 {
 	if (!FileName.IsEmpty())
 	{
-		//»ñÈ¡¾ø¶ÔÂ·¾¶
+		//è·å–ç»å¯¹è·¯å¾„
 		FString AbsoPath = FPaths::GameContentDir() + RelativePath + FileName;
-		//ÅĞ¶ÏÎÄ¼şÊÇ·ñ´æÔÚ
+		//åˆ¤æ–­æ–‡ä»¶æ˜¯å¦å­˜åœ¨
 		if (FPaths::FileExists(AbsoPath))
 		{
 			if (FFileHelper::LoadFileToString(ResultString, *AbsoPath))
@@ -113,14 +113,14 @@ bool SlAiJsonHandle::LoadStringFromFile(const FString& FileName, const FString& 
 			}
 			else
 			{
-				//¼ÓÔØ²»³É¹¦
+				//åŠ è½½ä¸æˆåŠŸ
 				SlAiHelper::Debug(FString("Load Error") + AbsoPath);
 				return false;
 			}
 		}
 		else
 		{
-			//Êä³öÎÄ¼ş²»´æÔÚ
+			//è¾“å‡ºæ–‡ä»¶ä¸å­˜åœ¨
 			SlAiHelper::Debug(FString("File is Exists ! ") + AbsoPath);
 		}
 	}
@@ -145,7 +145,7 @@ bool SlAiJsonHandle::WriteFileWithJsonData(const FString& JsonString, const FStr
 		if (!FileName.IsEmpty())
 		{
 			FString AbsoPath = FPaths::GameContentDir() + RelativePath + FileName;
-			//±£´æ
+			//ä¿å­˜
 			if (FFileHelper::SaveStringToFile(JsonString, *AbsoPath))
 			{
 				return true;

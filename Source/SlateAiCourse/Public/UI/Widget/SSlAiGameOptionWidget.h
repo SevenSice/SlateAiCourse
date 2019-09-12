@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
@@ -14,9 +14,9 @@ class SCheckBox;
 class STextBlock;
 class SSlider;
 
-//ĞŞ¸ÄÖĞÓ¢ÎÄÎ¯ÍĞ
+//ä¿®æ”¹ä¸­è‹±æ–‡å§”æ‰˜
 DECLARE_DELEGATE_OneParam(FChangeCulture, const ECultureTeam)
-//ĞŞ¸ÄÒôÁ¿Î¯ÍĞ
+//ä¿®æ”¹éŸ³é‡å§”æ‰˜
 DECLARE_DELEGATE_TwoParams(FChangeVolume, const float, const float)
 
 /**
@@ -37,30 +37,30 @@ public:
 	void Construct(const FArguments& InArgs);
 
 private:
-	//ÖĞÎÄCheckBoxÊÂ¼ş
+	//ä¸­æ–‡CheckBoxäº‹ä»¶
 	void ZhCheckBoxStateChanged(ECheckBoxState NewState);
-	//Ó¢ÎÄCheckBoxÊÂ¼ş
+	//è‹±æ–‡CheckBoxäº‹ä»¶
 	void EnCheckBoxStateChanged(ECheckBoxState NewState);
 
-	//Í³Ò»ÉèÖÃÑùÊ½
+	//ç»Ÿä¸€è®¾ç½®æ ·å¼
 	void StyleInitialized();
-	//ÒôÁ¿±ä»¯ÊÂ¼ş
+	//éŸ³é‡å˜åŒ–äº‹ä»¶
 	void MusicSliderChanged(float value);
-	//ÒôĞ§±ä»¯ÊÂ¼ş
+	//éŸ³æ•ˆå˜åŒ–äº‹ä»¶
 	void SoundSliderChanged(float value);
 private:
-	//»ñÈ¡MenuStyle
+	//è·å–MenuStyle
 	const FSlAiMenuStyle* MenuStyle;
-	//»ñÈ¡CheckBoxÖ¸Õë
+	//è·å–CheckBoxæŒ‡é’ˆ
 	TSharedPtr<SCheckBox> EnCheckBox;
 	TSharedPtr<SCheckBox> ZhCheckBox;
-	//Á½¸ö½ø¶ÈÌõ
-	TSharedPtr<SSlider> MuSlider;//ÒôÀÖ»¬¶¯Ìõ
-	TSharedPtr<SSlider> SoSlider;//ÒôĞ§»¬¶¯Ìõ
-	//½ø¶ÈÌõ°Ù·Ö±È
+	//ä¸¤ä¸ªè¿›åº¦æ¡
+	TSharedPtr<SSlider> MuSlider;//éŸ³ä¹æ»‘åŠ¨æ¡
+	TSharedPtr<SSlider> SoSlider;//éŸ³æ•ˆæ»‘åŠ¨æ¡
+	//è¿›åº¦æ¡ç™¾åˆ†æ¯”
 	TSharedPtr<STextBlock> MuTextBlock;
 	TSharedPtr<STextBlock> SoTextBlock;
-	//Î¯ÍĞ£¨´úÀí£©±äÁ¿
+	//å§”æ‰˜ï¼ˆä»£ç†ï¼‰å˜é‡
 	FChangeCulture ChangeCulture;
 	FChangeVolume ChangeVolume;
 };

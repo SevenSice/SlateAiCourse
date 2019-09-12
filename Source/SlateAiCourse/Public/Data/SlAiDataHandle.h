@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
@@ -18,34 +18,34 @@ public:
 
 	static TSharedPtr<SlAiDataHandle> Get();
 
-	//ĞŞ¸ÄÖĞÓ¢ÎÄ
+	//ä¿®æ”¹ä¸­è‹±æ–‡
 	void ChangeLocalizationCulture(ECultureTeam Culture);
-	//ĞŞ¸Ä²Ëµ¥ÒôÁ¿
+	//ä¿®æ”¹èœå•éŸ³é‡
 	void ResetMenuVolume(float MusicVol, float SoundVol);
 public:
-	//µ±Ç°ÓïÑÔ
+	//å½“å‰è¯­è¨€
 	ECultureTeam CurrentCulture;
-	//ÒôÁ¿
+	//éŸ³é‡
 	float MusicVolume;
 	float SoundVolume;
 
-	//´æµµÊı¾İ
+	//å­˜æ¡£æ•°æ®
 	TArray<FString> RecordDataList;
-	//´æµµÃû
+	//å­˜æ¡£å
 	FString RecordName;
 private:
-	//´´½¨µ¥Àı
+	//åˆ›å»ºå•ä¾‹
 	static TSharedPtr<SlAiDataHandle> Create();
 
-	//¸ù¾İEnumÀàĞÍ»ñÈ¡×Ö·û´®
+	//æ ¹æ®Enumç±»å‹è·å–å­—ç¬¦ä¸²
 	template<typename TEnum>
 	FString GetEnumValueAsString(const FString& Name, TEnum Value);
 
-	//¸ù¾İ×Ö·û´®»ñÈ¡EnumµÄÖµ
+	//æ ¹æ®å­—ç¬¦ä¸²è·å–Enumçš„å€¼
 	template<typename TEnum>
 	TEnum GetEnumValueFromString(const FString& Name, FString Value);
 
-	//³õÊ¼»¯´æµµ
+	//åˆå§‹åŒ–å­˜æ¡£
 	void InitRecordData();
 private:
 

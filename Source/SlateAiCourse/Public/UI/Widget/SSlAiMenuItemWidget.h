@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
@@ -26,26 +26,26 @@ public:
 	/** Constructs this widget with InArgs */
 	void Construct(const FArguments& InArgs);
 
-	//ÖØĞ´×é¼şµÄOnMouseButtonDown·½·¨
+	//é‡å†™ç»„ä»¶çš„OnMouseButtonDownæ–¹æ³•
 	virtual FReply OnMouseButtonDown(const FGeometry& MyGeometry, const FPointerEvent& MouseEvent) override;
-	//ÖØĞ´°´Å¥ÆğÀ´µÄ·½·¨
+	//é‡å†™æŒ‰é’®èµ·æ¥çš„æ–¹æ³•
 	virtual FReply OnMouseButtonUp(const FGeometry& MyGeometry, const FPointerEvent& MouseEvent) override;
-	//Êó±êÀë¿ª
+	//é¼ æ ‡ç¦»å¼€
 	virtual void OnMouseLeave(const FPointerEvent& MouseEvent) override;
 private:
 
-	//»ñÈ¡ÑÕÉ«
+	//è·å–é¢œè‰²
 	FSlateColor GetTintColor() const;
 private:
-	//»ñÈ¡MenuStyle
+	//è·å–MenuStyle
 	const struct FSlAiMenuStyle* MenuStyle;
 
-	//°´ÏÂÊÂ¼şÎ¯ÍĞ
+	//æŒ‰ä¸‹äº‹ä»¶å§”æ‰˜
 	FItemClicked OnClicked;
 
-	//±£´æ°´Å¥×´Ì¬
+	//ä¿å­˜æŒ‰é’®çŠ¶æ€
 	EMenuItem::Type ItemType;
 
-	//°´Å¥ÊÇ·ñÒÑ¾­°´ÏÂ
+	//æŒ‰é’®æ˜¯å¦å·²ç»æŒ‰ä¸‹
 	bool IsMouseButtonDown;
 };

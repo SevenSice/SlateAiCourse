@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "SSlAiChooseRecordWidget.h"
@@ -18,7 +18,7 @@ void SSlAiChooseRecordWidget::Construct(const FArguments& InArgs)
 {
 	MenuStyle = &SlAiStyle::Get().GetWidgetStyle<FSlAiMenuStyle>("BP_SlAiMenuStyle");
 
-	//³õÊ¼»¯ÏÂÀ­²Ëµ¥Êı¾İ
+	//åˆå§‹åŒ–ä¸‹æ‹‰èœå•æ•°æ®
 	for (TArray<FString>::TIterator It(SlAiDataHandle::Get()->RecordDataList);It;It++)
 	{
 		OptionsSource.Add(MakeShareable(new	FString(*It)));
@@ -64,7 +64,7 @@ void SSlAiChooseRecordWidget::Construct(const FArguments& InArgs)
 			]
 		]
 	];
-	//ÉèÖÃÏÂÀ­²Ëµ¥Ä¬ÈÏÑ¡Ïî
+	//è®¾ç½®ä¸‹æ‹‰èœå•é»˜è®¤é€‰é¡¹
 	RecordComboBox->SetSelectedItem(OptionsSource[0]);
 }
 
@@ -72,6 +72,6 @@ END_SLATE_FUNCTION_BUILD_OPTIMIZATION
 
 void SSlAiChooseRecordWidget::UpdataRecordName()
 {
-	//ĞŞ¸Ä´æµµÃû
+	//ä¿®æ”¹å­˜æ¡£å
 	SlAiDataHandle::Get()->RecordName = *RecordComboBox->GetSelectedItem().Get();
 }

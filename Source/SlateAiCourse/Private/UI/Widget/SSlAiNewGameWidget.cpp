@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "SSlAiNewGameWidget.h"
@@ -65,27 +65,27 @@ END_SLATE_FUNCTION_BUILD_OPTIMIZATION
 
 bool SSlAiNewGameWidget::AllowEnterGame()
 {
-	//»ñÈ¡ÊäÈëµÄĞÂ´æµµÃû
+	//è·å–è¾“å…¥çš„æ–°å­˜æ¡£å
 	FText InputText = EditTextBox->GetText();
 
-	//ÎÄ×ÖÊÇ·ñÎª¿Õ
+	//æ–‡å­—æ˜¯å¦ä¸ºç©º
 	if (InputText.ToString().IsEmpty())
 		return false;
 
-	//²éÑ¯ÊÇ·ñ´æÔÚ´æµµ£¨Ãû×ÖÊÇ·ñÖØ¸´£©
+	//æŸ¥è¯¢æ˜¯å¦å­˜åœ¨å­˜æ¡£ï¼ˆåå­—æ˜¯å¦é‡å¤ï¼‰
 	for (TArray<FString>::TIterator It(SlAiDataHandle::Get()->RecordDataList);It;It++)
 	{
 		if ((*It).Equals(InputText.ToString()))
 		{
-			//ÖØ¸´£¬ÔòÉèÖÃÊäÈë¿òÎª¿Õ
+			//é‡å¤ï¼Œåˆ™è®¾ç½®è¾“å…¥æ¡†ä¸ºç©º
 			EditTextBox->SetText(FText::FromString(""));
-			//ĞŞ¸ÄHintTextÎª´æµµÃûÖØ¸´
+			//ä¿®æ”¹HintTextä¸ºå­˜æ¡£åé‡å¤
 			EditTextBox->SetHintText(NSLOCTEXT("SlAiMenu","NameRepeatedHint", "Record Name Repeated!"));
 		
 			return false;
 		}
 	}
-	//±£´æĞÂ´æµµÃû
+	//ä¿å­˜æ–°å­˜æ¡£å
 	SlAiDataHandle::Get()->RecordName = InputText.ToString();
 
 	return true;

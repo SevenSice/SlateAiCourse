@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
@@ -14,7 +14,7 @@ enum class ECultureTeam : uint8
 	ZH = 1
 };
 
-//Menu°´Å¥µÄÀàĞÍ
+//MenuæŒ‰é’®çš„ç±»å‹
 namespace EMenuItem
 {
 	enum Type
@@ -34,7 +34,7 @@ namespace EMenuItem
 	};
 }
 
-//Menu½çÃæÀàĞÍ
+//Menuç•Œé¢ç±»å‹
 namespace EMenuType
 {
 	enum Type
