@@ -4,18 +4,20 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/GameModeBase.h"
-#include "SlAiMenuGameMode.generated.h"
+#include "SlAiGameMode.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class SLATEAICOURSE_API ASlAiMenuGameMode : public AGameModeBase
+class SLATEAICOURSE_API ASlAiGameMode : public AGameModeBase
 {
 	GENERATED_BODY()
-public:
-	ASlAiMenuGameMode();
-	
+
+	ASlAiGameMode();
+	//重写帧函数
+	virtual void Tick(float DeltaSeconds) override;
+
 protected:
 	virtual void BeginPlay() override;
 };

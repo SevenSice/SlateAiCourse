@@ -201,9 +201,20 @@ void SSlAiMenuWidget::MenuItemOnClicked(EMenuItem::Type ItemType)
 		PlayClose(EMenuType::StartGame);
 		break;
 	case EMenuItem::EnterGame:
-		SlAiHelper::PlayerSoundAndCall(UGameplayStatics::GetPlayerController(GWorld, 0)->GetWorld(), MenuStyle->StartGameSound, this, &SSlAiMenuWidget::EnterGame);
+		//检测是否可以进入游戏
+		if (NewGameWidget->AllowEnterGame())
+		{
+			SlAiHelper::PlayerSoundAndCall(UGameplayStatics::GetPlayerController(GWorld, 0)->GetWorld(), MenuStyle->StartGameSound, this, &SSlAiMenuWidget::EnterGame);
+		}
+		else
+		{
+			//无法进入游戏，解锁按钮
+			ControlLocked = false;
+		}
 		break;
 	case EMenuItem::EnterRecord:
+		//告诉选择存档更新存档名
+		ChooseRecordWidget->UpdataRecordName();
 		SlAiHelper::PlayerSoundAndCall(UGameplayStatics::GetPlayerController(GWorld, 0)->GetWorld(), MenuStyle->StartGameSound, this, &SSlAiMenuWidget::EnterGame);
 		break;
 
@@ -334,7 +345,7 @@ void SSlAiMenuWidget::PlayClose(EMenuType::Type NewMenu)
 	AnimState = EMenuAnim::Close;
 	//播放反向动画
 	MenuAnimation.PlayReverse(this->AsShared());
-
+	
 	//播放切换菜单音乐
 	FSlateApplication::Get().PlaySound(MenuStyle->MenuItemChangeSound);
 }
@@ -347,6 +358,5 @@ void SSlAiMenuWidget::QuitGame()
 
 void SSlAiMenuWidget::EnterGame()
 {
-	SlAiHelper::Debug(FString("Enter Game!"),10.0f);
-	ControlLocked = false;
+	UGameplayStatics::OpenLevel(UGameplayStatics::GetPlayerController(GWorld, 0)->GetWorld(), FName("GameMap"));
 }
