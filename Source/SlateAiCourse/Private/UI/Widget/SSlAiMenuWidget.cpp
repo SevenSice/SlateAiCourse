@@ -9,12 +9,18 @@
 #include "SImage.h"
 #include "SBorder.h"
 #include "STextBlock.h"
+
 #include "SSlAiMenuItemWidget.h"
-#include "Common/SlAiHelper.h"
+#include "SlAiHelper.h"
 #include <SSlAiGameOptionWidget.h>
 #include "SlAiDataHandle.h"
 #include "SSlAiNewGameWidget.h"
 #include "SSlAiChooseRecordWidget.h"
+
+#include "Kismet/GameplayStatics.h"
+#include "SlAiMenuController.h"
+
+
 
 struct MenuGroup
 {
@@ -41,8 +47,10 @@ struct MenuGroup
 BEGIN_SLATE_FUNCTION_BUILD_OPTIMIZATION
 void SSlAiMenuWidget::Construct(const FArguments& InArgs)
 {
+	//获取MenuStyle
 	MenuStyle = &SlAiStyle::Get().GetWidgetStyle<FSlAiMenuStyle>("BP_SlAiMenuStyle");
-	
+	//播放背景音乐
+	FSlateApplication::Get().PlaySound(MenuStyle->MenuBackgroundMusic);
 
 	ChildSlot
 		[
@@ -104,12 +112,103 @@ void SSlAiMenuWidget::Construct(const FArguments& InArgs)
 	];
 
 	InitializedMenuList();
+	InitializedAnimation();
+}
+
+void SSlAiMenuWidget::Tick(const FGeometry& AllottedGeometry, const double InCurrentTime, const float InDeltaTime)
+{
+	switch (AnimState)
+	{
+	case EMenuAnim::Stop:
+		break;
+	case EMenuAnim::Close:
+		//如果正在播放
+		if (MenuAnimation.IsPlaying())
+		{
+			//实时修改menu的大小
+			ResetWidgetSize(MenuCurve.GetLerp() * 600.0f, -1.0f);
+			//在关闭了40%的时候不显示组件
+			if (MenuCurve.GetLerp()<0.6f&&IsMenuShow)
+				ChooseWidget(EMenuType::None);
+		}
+		else
+		{
+			//关闭的动画完了，设置状态为打开
+			AnimState = EMenuAnim::Open;
+			//开始播放打开的动画
+			MenuAnimation.Play(this->AsShared());
+		}
+		break;
+	case EMenuAnim::Open:
+		//如果正在播放
+		if (MenuAnimation.IsPlaying())
+		{
+			//实时修改Menu大小
+			ResetWidgetSize(MenuCurve.GetLerp() * 600.0f, CurrentHeight);
+			//打开60%之后显示组件
+			if (MenuCurve.GetLerp() > 0.6f && !IsMenuShow)
+				ChooseWidget(CurrentMenu);
+		}
+		//如果已经播放完毕
+		if (MenuAnimation.IsAtEnd())
+		{
+			//修改状态为stop
+			AnimState = EMenuAnim::Stop;
+			//解锁按钮
+			ControlLocked = false;
+		}
+		break;
+	}
 }
 
 END_SLATE_FUNCTION_BUILD_OPTIMIZATION
 void SSlAiMenuWidget::MenuItemOnClicked(EMenuItem::Type ItemType)
 {
-	//SlAiHelper::Debug(TEXT("Start Game"),5.0f);
+	//如果按钮锁住了直接return
+	if (ControlLocked == true) return;
+	//设置锁住了按钮
+	ControlLocked = true;
+
+	switch (ItemType)
+	{
+	case EMenuItem::StartGame:
+		PlayClose(EMenuType::StartGame);
+		break;
+	case EMenuItem::GameOption:
+		PlayClose(EMenuType::GameOption);
+		break;
+	case EMenuItem::QuitGame:
+		//退出游戏，播放声音并且延迟掉用退出函数
+		SlAiHelper::PlayerSoundAndCall(UGameplayStatics::GetPlayerController(GWorld, 0)->GetWorld(), MenuStyle->ExitGameSound, this, &SSlAiMenuWidget::QuitGame);
+		
+		break;
+	case EMenuItem::NewGame:
+		PlayClose(EMenuType::NewGame);
+		break;
+	case EMenuItem::LoadRecord:
+		PlayClose(EMenuType::ChooseRecord);
+		break;
+	case EMenuItem::StartGameGoBack:
+		PlayClose(EMenuType::MainMenu);
+		break;
+	case EMenuItem::GameOptionGoBack:
+		PlayClose(EMenuType::MainMenu);
+		break;
+	case EMenuItem::NewGameGoBack:
+		PlayClose(EMenuType::StartGame);
+		break;
+	case EMenuItem::ChooseRecordGoBack:
+		PlayClose(EMenuType::StartGame);
+		break;
+	case EMenuItem::EnterGame:
+		SlAiHelper::PlayerSoundAndCall(UGameplayStatics::GetPlayerController(GWorld, 0)->GetWorld(), MenuStyle->StartGameSound, this, &SSlAiMenuWidget::EnterGame);
+		break;
+	case EMenuItem::EnterRecord:
+		SlAiHelper::PlayerSoundAndCall(UGameplayStatics::GetPlayerController(GWorld, 0)->GetWorld(), MenuStyle->StartGameSound, this, &SSlAiMenuWidget::EnterGame);
+		break;
+
+	}
+	
 }
 
 void SSlAiMenuWidget::ChangeCulture(ECultureTeam Culture)
@@ -173,11 +272,13 @@ void SSlAiMenuWidget::InitializedMenuList()
 
 	MenuMap.Add(EMenuType::ChooseRecord, MakeShareable(new MenuGroup(NSLOCTEXT("SlAiMenu", "LoadRecord", "LoadRecord"), 510.f, &ChooseRecordList)));
 
-	ChooseWidget(EMenuType::MainMenu);
 }
 
 void SSlAiMenuWidget::ChooseWidget(EMenuType::Type WidgetType)
 {
+	//定义是否已经显示菜单
+	IsMenuShow = WidgetType != EMenuType::None;
+
 	//移出所有组件(切换新控件前清空原来所有的子控件)
 	ContentBox->ClearChildren();
 	//如果Menutype是None
@@ -189,8 +290,6 @@ void SSlAiMenuWidget::ChooseWidget(EMenuType::Type WidgetType)
 	}
 	//更改标题
 	TitleText->SetText((*MenuMap.Find(WidgetType))->MenuName);
-	//修改size
-	ResetWidgetSize(600.0f, (*MenuMap.Find(WidgetType))->MenuHeight);
 }
 
 //如果不修改高度,NewHeight转入-1
@@ -199,4 +298,55 @@ void SSlAiMenuWidget::ResetWidgetSize(float NewWidget, float NewHeight)
 	RootSizeBox->SetWidthOverride(NewWidget);
 	if (NewHeight < 0) return;
 	RootSizeBox->SetHeightOverride(NewHeight);
+}
+
+void SSlAiMenuWidget::InitializedAnimation()
+{
+	//开始延迟
+	const float StartDelay = 0.3f;
+	//持续时间
+	const float AnimDuration = 0.6f;
+	//实例化化播放器
+	MenuAnimation = FCurveSequence();
+	//曲线注册进播放器
+	MenuCurve = MenuAnimation.AddCurve(StartDelay, AnimDuration, ECurveEaseFunction::QuadInOut);
+
+	//初始化设置Menu的大小
+	ResetWidgetSize(600.0f, 510.0f);
+	//初始显示主界面
+	ChooseWidget(EMenuType::MainMenu);
+
+	//允许点击按钮
+	ControlLocked = false;
+	//设置动画状态为停止
+	AnimState = EMenuAnim::Stop;
+	//设置动画播放器跳到结尾（0 -> 1）
+	MenuAnimation.JumpToEnd();
+}
+
+void SSlAiMenuWidget::PlayClose(EMenuType::Type NewMenu)
+{
+	//设置新的界面
+	CurrentMenu = NewMenu;
+	//设置新高度
+	CurrentHeight = (*MenuMap.Find(NewMenu))->MenuHeight;
+	//设置播放状态是Close
+	AnimState = EMenuAnim::Close;
+	//播放反向动画
+	MenuAnimation.PlayReverse(this->AsShared());
+
+	//播放切换菜单音乐
+	FSlateApplication::Get().PlaySound(MenuStyle->MenuItemChangeSound);
+}
+
+void SSlAiMenuWidget::QuitGame()
+{
+	//UKismetSystemLibrary::QuitGame(this, nullptr, EQuitPreference::Quit);  
+	Cast<ASlAiMenuController>(UGameplayStatics::GetPlayerController(GWorld, 0))->ConsoleCommand("quit");
+}
+
+void SSlAiMenuWidget::EnterGame()
+{
+	SlAiHelper::Debug(FString("Enter Game!"),10.0f);
+	ControlLocked = false;
 }

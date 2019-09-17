@@ -29,6 +29,9 @@ public:
 
 	/** Constructs this widget with InArgs */
 	void Construct(const FArguments& InArgs);
+
+	//重写 Tick 函数
+	virtual void Tick(const FGeometry& AllottedGeometry, const double InCurrentTime, const float InDeltaTime) override;
 private: 
 	//绑定到各个MenuItem的方法
 	void MenuItemOnClicked(EMenuItem::Type ItemType);
@@ -43,6 +46,15 @@ private:
 	void ChooseWidget(EMenuType::Type WidgetType);
 	//修改菜单的大小
 	void ResetWidgetSize(float NewWidget, float NewHeight);
+	//初始化动画组件
+	void InitializedAnimation();
+	//播放/关闭 动画
+	void PlayClose(EMenuType::Type NewMenu);
+
+	//退出游戏
+	void QuitGame();
+	//进入游戏
+	void EnterGame();
 private:
 	//获取MenuStyle
 	const struct FSlAiMenuStyle* MenuStyle;
@@ -63,4 +75,18 @@ private:
 	//选择存档控件指针
 	TSharedPtr<SSlAiChooseRecordWidget> ChooseRecordWidget;
 
+	//动画播放器
+	FCurveSequence MenuAnimation;
+	//曲线控制器
+	FCurveHandle MenuCurve;
+	//用来保存新的高度
+	float CurrentHeight;
+	//是否已经显示Menu组件
+	bool IsMenuShow;
+	//是否锁住按钮
+	bool ControlLocked;
+	//保存当前的动画状态
+	EMenuAnim::Type AnimState;
+	//保存当前的菜单
+	EMenuType::Type CurrentMenu;
 };
