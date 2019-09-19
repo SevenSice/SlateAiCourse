@@ -92,6 +92,21 @@ ASlAiPlayerCharacter::ASlAiPlayerCharacter()
 	static ConstructorHelpers::FClassFinder<UAnimInstance> StaticAnimThird(TEXT("AnimBlueprint'/Game/Blueprint/Player/ThirdPlayer_Animation.ThirdPlayer_Animation_C'"));
 	GetMesh()->AnimClass = StaticAnimThird.Class;
 
+	//初始化参数
+	BaseTurnRate = 45.f;
+	BaseLookUpRate = 45.f;
+	//设置初始速度为150.f
+	GetCharacterMovement()->MaxWalkSpeed = 150.f;
+	//初始为第三人称
+	//GameView = EGameViewMode::Third;
+	//上半身动作初始为无动作
+	//UpperType = EUpperBody::None;
+	//一开始允许切换视角
+	//IsAllowSwitch = true;
+	//一开始输入不锁住
+	//IsInputLocked = false;
+	//初始化没有攻击
+	//IsAttack = false;
 }
 
 // Called when the game starts or when spawned
@@ -151,35 +166,48 @@ void ASlAiPlayerCharacter::MoveRight(float Value)
 
 void ASlAiPlayerCharacter::LookUpAtRate(float Value)
 {
-
+	AddControllerPitchInput(Value * BaseLookUpRate * GetWorld()->GetDeltaSeconds());
 }
 
 void ASlAiPlayerCharacter::Turn(float Value)
 {
-
+	AddControllerYawInput(Value);
 }
 
 void ASlAiPlayerCharacter::TurnAtRate(float Value)
 {
-
+	AddControllerYawInput(Value * BaseTurnRate * GetWorld()->GetDeltaSeconds());
 }
 
 void ASlAiPlayerCharacter::OnStartJump()
 {
+	//如果操作被锁住,直接返回
+	//if (IsInputLocked) return;
 
+	bPressedJump = true;
 }
 
 void ASlAiPlayerCharacter::OnStopJump()
 {
+	//如果操作被锁住,直接返回
+	//if (IsInputLocked) return;
 
+	bPressedJump = false;
+	StopJumping();
 }
 
 void ASlAiPlayerCharacter::OnStartRun()
 {
+	//如果操作被锁住,直接返回
+	//if (IsInputLocked) return;
 
+	GetCharacterMovement()->MaxWalkSpeed = 375.f;
 }
 
 void ASlAiPlayerCharacter::OnStopRun()
 {
+	//如果操作被锁住,直接返回
+	//if (IsInputLocked) return;
 
+	GetCharacterMovement()->MaxWalkSpeed = 150.f;
 }

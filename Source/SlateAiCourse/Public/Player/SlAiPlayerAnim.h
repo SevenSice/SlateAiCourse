@@ -6,6 +6,7 @@
 #include "Animation/AnimInstance.h"
 #include "SlAiPlayerAnim.generated.h"
 
+class ASlAiPlayerCharacter;
 /**
  * 
  */
@@ -58,7 +59,7 @@ protected:
 
 
 	//角色指针
-	class ASlAiPlayerCharacter* SPCharacter;
+	ASlAiPlayerCharacter* SPCharacter;
 
 	//上半身的Montage
 	UAnimMontage* PlayerHitMontage;
