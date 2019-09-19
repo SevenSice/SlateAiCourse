@@ -8,7 +8,8 @@
 			"Name": "SlateAiCourse",
 			"Type": "Runtime",
 			"LoadingPhase": "Default",
-			"AdditionalDependencies": [
+			"AdditionalDependencies":
+			[
 				"Engine",
 				"Slate",
 				"SlateCore"

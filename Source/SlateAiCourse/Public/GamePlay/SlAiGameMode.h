@@ -20,4 +20,5 @@ class SLATEAICOURSE_API ASlAiGameMode : public AGameModeBase
 
 protected:
 	virtual void BeginPlay() override;
+
 };
